@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        .hero {
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('banner.png');
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+        }
+
+        .form-box {
+            width: 380px;
+            height: 480px;
+            position: relative;
+            margin: 6% auto;
+            background: #fff;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .button-box {
+            width: 220px;
+            margin: 35px auto;
+            position: relative;
+            box-shadow: 0 0 20px 9px #ff61241f;
+            border-radius: 30px;
+        }
+
+        .toggle-btn {
+            padding: 10px 30px;
+            cursor: pointer;
+            background: transparent;
+            border: 0;
+            outline: none;
+            position: relative;
+        }
+
+        #btn {
+            top: 0;
+            left: 0;
+            position: absolute;
+            width: 110px;
+            height: 100%;
+            background: linear-gradient(to right, #ff105f, #ffad06);
+            border-radius: 30px;
+            transition: 0.5s;
+        }
+
+        .input-group {
+            top: 180px;
+            position: absolute;
+            width: 280px;
+            transition: 0.5s;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px 0;
+            margin: 5px 0;
+            border-left: 0;
+            border-top: 0;
+            border-right: 0;
+            border-bottom: 1px solid #999;
+            outline: none;
+            background: transparent;
+        }
+
+        .submit-btn {
+            width: 85%;
+            padding: 10px 30px;
+            cursor: pointer;
+            display: block;
+            margin: auto;
+            background: linear-gradient(to right, #ff105f, #ffad06);
+            border: 0;
+            outline: none;
+            border-radius: 30px;
+        }
+
+        .chech-box {
+            margin: 30px 10px 30px 0;
+        }
+
+        span {
+            color: #777;
+            font-size: 12px;
+            bottom: 68px;
+            position: absolute;
+        }
+
+        #login-form {
+            left: 50px;
+        }
+
+        #register-form {
+            left: 500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="form-box">
+            <div class="button-box">
+                <div id="btn"></div>
+                <button type="button" class="toggle-btn" onclick="login()">Log In</button>
+                <button type="button" class="toggle-btn" onclick="register()">Sign up</button>
+            </div>
+
+            <!-- Separate the login and register forms -->
+            <form id="login-form" class="input-group">
+                <input type="text" id="login_email" class="input-field" placeholder="Email Id" required>
+                <input type="text" id="login_password" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="chech-box">
+                <span>Remember Password</span>
+                <button type="button" id="login" name="login" class="submit-btn"><a href="index.html">Login</a></button>
+            </form>
+
+            <form id="register-form" class="input-group">
+                <input type="email" id="email" class="input-field" placeholder="Email Id" required>
+                <input type="text" id="password" class="input-field" placeholder="Enter Password" required>
+                <input type="checkbox" class="chech-box"><span>I agree to the terms & Conditions</span>
+                <button type="button" id="register" name="register" class="submit-btn">Register Now</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            document.getElementById('btn').style.left = '0';
+            document.getElementById('register-form').style.left = '500px';
+            document.getElementById('login-form').style.left = '50px';
+        }
+
+        function register() {
+            document.getElementById('btn').style.left = '110px';
+            document.getElementById('register-form').style.left = '50px';
+            document.getElementById('login-form').style.left = '-400px';
+        }
+    </script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+  
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+      apiKey: "AIzaSyCOdw39-p6EEndPEpLfZNSMOK3PcPxtfrU",
+      authDomain: "vijay-368b8.firebaseapp.com",
+      databaseURL: "https://vijay-368b8-default-rtdb.firebaseio.com",
+      projectId: "vijay-368b8",
+      storageBucket: "vijay-368b8.appspot.com",
+      messagingSenderId: "754141435698",
+      appId: "1:754141435698:web:006b4cd733da7cfcb6692b",
+      measurementId: "G-5VYDB51CQ2"
+    };
+  
+  
+  
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        console.log(app);
+  
+        
+  
+        //----- New Registration code start	  
+        document.getElementById("register").addEventListener("click", function() {
+            var email =  document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            //For new registration
+            createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log(user);
+              alert("Registration successfully!!");
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              // ..
+              console.log(errorMessage);
+              alert(error);
+            });		  		  
+        });
+        //----- End
+  
+        //----- Login code start	  
+        document.getElementById("login").addEventListener("click", function() {
+            var email =  document.getElementById("login_email").value;
+            var password = document.getElementById("login_password").value;
+  
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+              // Signed in 
+              const user = userCredential.user;
+              console.log(user);
+              alert(user.email+" Login successfully!!!");
+			window.location.href = 'file:///C:/Users/vijay/OneDrive/Desktop/New%20folder%20(2)/shop.html';
+		    // ...
+              // ...
+            })
+            .catch((error) => {
+              const errorCode = error.code;
+              const errorMessage = error.message;
+              console.log(errorMessage);
+              alert(errorMessage);
+            });		  		  
+        });
+        //----- End
+  
+        //----- Logout code start	  
+        document.getElementById("logout").addEventListener("click", function() {
+            signOut(auth).then(() => {
+                // Sign-out successful.
+                console.log('Sign-out successful.');
+                alert('Sign-out successful.');
+                document.getElementById('logout').style.display = 'none';
+              }).catch((error) => {
+                // An error happened.
+                console.log('An error happened.');
+              });		  		  
+        });
+        //----- End
+  
+      </script>
+</body>
+</html>

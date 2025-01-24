@@ -25,17 +25,6 @@ Firebase (for database and authentication) 🔥
 🛒 Seamless Shopping: Buyers can explore and purchase unique crafts effortlessly.
 🌐 Global Reach: Connecting local artisans with a worldwide audience.
 📖 Storytelling: Every product comes with a story about its creation and the artisan behind it.
-🎉 Hackathon Experience
-Participating in this hackathon was an unforgettable journey 💼💡. Together, our team:
 
-Tackled real-world challenges and refined our problem-solving skills.
-Pushed the boundaries of our creativity and technical expertise.
-Turned a simple idea into a meaningful and impactful platform.
-Special thanks to the mentors and organizers for their support and guidance throughout this journey! 🙏
-
-📬 Contact
-Feel free to reach out for collaboration or feedback:
-📧 Email: your-email@example.com
-🌐 LinkedIn: Your LinkedIn Profile
 
 🌟 Let’s celebrate creativity and empower artisans together!
